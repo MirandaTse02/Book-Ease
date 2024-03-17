@@ -1,0 +1,50 @@
+body {
+    background-color: #1B262C;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.center {
+    margin: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #C7C7C7;
+    text-align: center;
+    width: 450px;
+    height: 580px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.input {
+    width: 345px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.login {
+    width: 162px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 48px;
+    background-color: #1B262C;
+    color: #FFFFFF;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
