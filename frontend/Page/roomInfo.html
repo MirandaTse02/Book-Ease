@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="../Style/roomInfo.css" />
         <script src="../Script/roomInfo.js"></script>
     </head>
     <body>
-        <a href="javascript:history.back()">Go Back</a>
+        <div class="left">
+            <h1>Room Information</h1>
+            <p id="roomName" class="roomName"></p> <!-- display room name, e.g. FJ301-->
+            <!-- get information from database -->
+            <p id="location" class="info">Location: </p>
+            <p id="capacity" class="info">Capacity: </p>
+            <p class="info">Equipment:</p>
+            <ul id="equip" class="info">
+                <li>Wired Handheld</li>
+                <li>Teaching PC</li>
+                <li>2 Projector</li>
+            </ul>
+
+            <!-- go back to previous page-->
+            <a href="javascript:history.back()">Go Back</a>
+        </div>
+        <div class="right">
+            <!-- get photo from database-->
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRKq1sPy-5zv-uSrPM1NFnpmRV6WSu-RgTdqOXuV--PJVood3SM" alt="room photo" id="roomPhoto">
+        </div>
     </body>
 </html>
