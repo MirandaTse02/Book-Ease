@@ -1,0 +1,40 @@
+body {
+    background-color: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1B262C;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.select {
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #c7c7c7;
+}
+
+.room {
+    border-radius: 10px;
+    background-color: #c7c7c7;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+img {
+    height: 50px;
+    width: 200px;
+    object-fit: cover;
+    margin: 5px;
+}
+
+.viewRoom:hover {
+    cursor: pointer;
+}
