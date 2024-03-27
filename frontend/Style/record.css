@@ -35,4 +35,6 @@ td{
     font-size:17px;
 }
 
-
+.view:hover {
+    cursor: pointer;
+}

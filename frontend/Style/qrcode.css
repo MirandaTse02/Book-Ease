@@ -21,6 +21,7 @@ body {
 }
 a {
     background-color: #c7c7c7;
+    text-decoration: none;
     align-items: center;
     justify-content: center;
     display: flex;
