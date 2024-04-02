@@ -12,10 +12,15 @@ function fetchRoom() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // response json
             var response = JSON.parse(xhr.responseText);
-            var roomList = document.getElementById('room');
-            roomList.innerHTML = '';
-            response.forEach(function(item) {
+            var lecRoomList = document.getElementById('lecture');
+            var classRoomList = document.getElementById('classroom');
+            lecRoomList.innerHTML = '<h2>Lecture Theatres</h2>';
+            classRoomList.innerHTML = '<h2>Classroom</h2>';
+            
+            response.forEach(function(room) {
                 // show room by category
+                // if cate == lec, lecRoomList append child <div class="room"> ...
+                // cate == classrom, classRoomList append child <div class="room"> ...
             });
         }
     };
