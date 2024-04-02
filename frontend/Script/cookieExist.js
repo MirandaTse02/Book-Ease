@@ -12,7 +12,7 @@ function getCookie(name) {
 
 function cookieExist() {
     // if no cookie, i.e. not login, redirect to login.html
-    var exist = getCookie("userid");
+    var exist = getCookie("userID");
     
     if (exist == null) {
         // go to login.html
