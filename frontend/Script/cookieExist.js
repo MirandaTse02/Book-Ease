@@ -3,7 +3,7 @@ function getCookie(name) {
     var prefix = name + "=";
     var begin = c.indexOf("; "+prefix);
     if (begin == -1) {
-        begin = dc.indexOf(prefix);
+        begin = c.indexOf(prefix);
         if (begin != 0) return null;
     }
     
@@ -16,7 +16,7 @@ function cookieExist() {
     
     if (exist == null) {
         // go to login.html
-	location.replace("/Page/login.html");
+	    location.replace("login.html");
     }
 }
 
