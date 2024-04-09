@@ -5,7 +5,7 @@
         <script src="../Script/roomInfo.js"></script>
     </head>
     <body>
-        <div class="left">
+        <div class="left" id="info">
             <h1>Room Information</h1>
             <p id="roomName" class="roomName"></p> <!-- display room name, e.g. FJ301-->
             <!-- get information from database -->
@@ -21,7 +21,7 @@
             <!-- go back to previous page-->
             <a href="javascript:history.back()">Go Back</a>
         </div>
-        <div class="right">
+        <div class="right" id="photo">
             <!-- get photo from database-->
             <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRKq1sPy-5zv-uSrPM1NFnpmRV6WSu-RgTdqOXuV--PJVood3SM" alt="room photo" id="roomPhoto">
         </div>
