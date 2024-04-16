@@ -1,20 +1,14 @@
 # Book-Ease
 
-## Run localhost
+## Run Localhost
 
-1. Navigate into the 'frontend' folder
-   ```sh
-   cd frontend
-   ```
-2. If first time running, command line run
-   ```sh
-   npm install http-server --save-dev
-   ```
-3. To run the server, command line run
-   ```sh
-   npm start
-   ```
+1. Install XAMPP
+   https://www.apachefriends.org/download.html
+   
+2. Copy the "BookEase" folder into "xampp\htdocs"
+
+3. Start the Apache in XAMPP
 
 ## Access Pages
 
-To access different page, type "localhost:8080/Page/[pageName.html]"
+To access different page, type "localhost/BookEase/Page/[pageName.html]"
