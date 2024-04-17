@@ -1,4 +1,4 @@
-  window.addEventListener("DOMContentLoaded", (e) => {
+window.addEventListener("DOMContentLoaded", (e) => {
     const el = document.getElementsByTagName("form");
     if (el) {
         // event listener form on submit
@@ -11,21 +11,26 @@
                 const pw = document.querySelector('#password').value;
             
                 // delete late
-                document.cookie = "userID="+userid;
-                location.replace("home.html");
+                // document.cookie = "userID="+userid;
+                // location.replace("home.html");
                 
                 // php request
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'login.php?id=' + userid);
+                xhr.open('POST', '../php/login.php?id=' + userid);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         document.cookie = "userID="+userid;
-                        // go to home.html
-                        location.replace("home.html");
+                        var response = xhr.responseText;
+                        if(response === "login success")
+                            // go to home.html
+                            location.replace("home.html");
+                        else {
+                            console.log(response);
+                        }
                     }
                 }
-                xhr.send('password='+pw);
+                xhr.send("password=" + pw);
             });
         }
     }

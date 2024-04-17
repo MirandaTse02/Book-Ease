@@ -1,4 +1,6 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
     // Database configuration
     $host = 'localhost';
@@ -6,28 +8,33 @@
     $username = 'root';
     $DBpassword = '';
 
-    $dsn = "mysql:host=$host;dbname=$dbName;";
-
     try {
-        $pdo = new PDO($dsn, $username, $DBpassword);
-    } catch (PDOException $e) {
+        $conn = new mysqli($host, $username, $DBpassword, $dbName);
+        if ($conn->connect_errno) {
+            throw new Exception("Connection failed: " . $conn->connect_error);
+        }
+    } catch (Exception $e) {
         die("Error: " . $e->getMessage());
     }
 
-    $userID = $_POST['id'];
+    $userID = $_GET['id'];
     $loginPass = $_POST['password'];
 
-    global $pdo;
-    $stmt = $pdo->prepare('SELECT * FROM User WHERE id = ? and password = ?');
-    $stmt->execute(['userID', 'loginPass']);
-    $result = $stmt->fetchAll();
-    
-    if ($result->num_rows > 0) {
-        echo "Login success";
-        header("Location:../Page/home.html");
+    $stmt = $conn->prepare('SELECT password FROM User WHERE username = ?');
+    $stmt->bind_param("s", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+        if (strcmp($row['password'], $loginPass)==0) {
+            echo "login success";
+        }
     }
     else {
         echo "Invalid username or password";
     }
+
+    $stmt->close();
     $conn->close();
 ?>
