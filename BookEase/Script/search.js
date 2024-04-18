@@ -8,7 +8,7 @@ function info(room) {
 // fetch and display all room
 function fetchRoom() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../php/searchRoomCate.php?category=none'); // php may change
+    xhr.open('GET', '../php/searchRoomCate.php?category=all'); // php may change
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
