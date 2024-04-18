@@ -6,13 +6,9 @@ window.addEventListener("DOMContentLoaded", (e) => {
             // add event listener to form submit
             element.addEventListener('submit', (event) => {
                 event.preventDefault(); // prevent form from submitting
-            
+                
                 const userid = document.querySelector('#id').value;
                 const pw = document.querySelector('#password').value;
-            
-                // delete late
-                // document.cookie = "userID="+userid;
-                // location.replace("home.html");
                 
                 // php request
                 var xhr = new XMLHttpRequest();
@@ -27,6 +23,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
                             location.replace("home.html");
                         else {
                             console.log(response);
+                            alert("Wrong ID or password please enter again.");
                         }
                     }
                 }
