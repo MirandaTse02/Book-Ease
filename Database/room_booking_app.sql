@@ -31,7 +31,7 @@ CREATE TABLE `Booking` (
   `bookingID` int(11) NOT NULL,
   `roomID` varchar(10) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `timeslot` varchar(10) DEFAULT NULL,
+  `timeslot` varchar(20) DEFAULT NULL,
   `QRcodeID` int(11) DEFAULT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -65,7 +65,7 @@ INSERT INTO `Category` (`categoryID`, `name`, `access`) VALUES
 CREATE TABLE `QRcode` (
   `codeID` int(11) NOT NULL,
   `bookingID` int(11) DEFAULT NULL,
-  `pic` varchar(30) DEFAULT NULL
+  `pic` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
