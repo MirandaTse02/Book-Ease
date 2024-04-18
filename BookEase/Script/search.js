@@ -1,12 +1,14 @@
 function info(room) {
     localStorage.setItem("Room", room);
-    window.open("../Page/roomInfo.html", "_self")
+    if (localStorage.getItem("Room") == null) {
+        window.open("../Page/roomInfo.html", "_self");
+    }
 }
 
 // fetch and display all room
 function fetchRoom() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'getRoom.php?category=none'); // php may change
+    xhr.open('GET', '../php/searchRoomCate.php?category=none'); // php may change
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -23,13 +25,13 @@ function fetchRoom() {
                 roomDiv.className = "room";
 
                 var roomImg = document.createElement("img");
-                roomImg.src = room.src // check php/ json
-                roomImg.alt = room.name // check php/ json
+                roomImg.src = room.src; // check php/ json
+                roomImg.alt = room.name; // check php/ json
                 roomDiv.appendChild(roomImg);
     
                 var roomName = document.createElement("p");
-                roomName.innerHTML = room.name // check php/ json
-                roomDiv.appendChild(roomName)
+                roomName.innerHTML = room.name; // check php/ json
+                roomDiv.appendChild(roomName);
     
                 var viewRoom = document.createElement("p");
                 viewRoom.className = "viewRoom";
@@ -75,7 +77,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
                 cateDiv.appendChild(title);
     
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'getRoom.php?category=' + cate); // php may change
+                xhr.open('GET', '../php/searchRoomCate.php?category=' + cate); // php may change
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
