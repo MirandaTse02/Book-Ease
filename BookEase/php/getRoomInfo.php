@@ -2,7 +2,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $roomID = $_Get['roomName'];
+    $roomID = $_GET['roomName'];
 
     $host = 'localhost';
     $dbName = 'room_booking_app';
@@ -18,11 +18,11 @@
     $stmt->bind_param("s", $roomID);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows >= 1) {
+    if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         echo json_encode($row);
     }
     else {
-        echo "fail get room "+$roomID;
+        echo "fail to get room" + $roomID;
     }
 ?>
