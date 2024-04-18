@@ -3,6 +3,8 @@ window.onload = function() {
     var room = document.getElementById("roomName");
     
     room.innerText = roomName;
+
+    localStorage.setItem("Room", null);
 }
 
 // get room info from db
@@ -10,7 +12,7 @@ function getRoomInfo() {
     var roomName = localStorage.getItem("Room");
     
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'getRoomInfo.php?roomName='+roomName);
+    xhr.open('GET', '../php/getRoomInfo.php?roomName='+roomName);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -59,6 +61,8 @@ function getRoomInfo() {
             divInfo.appendChild(equipmentList);
         }
     }
+
+    xhr.send();
 }
 
 getRoomInfo();
