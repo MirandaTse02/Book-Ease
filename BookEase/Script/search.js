@@ -1,8 +1,5 @@
 function info(room) {
     localStorage.setItem("Room", room);
-    if (localStorage.getItem("Room") == null) {
-        window.open("../Page/roomInfo.html", "_self");
-    }
 }
 
 // fetch and display all room
@@ -21,25 +18,30 @@ function fetchRoom() {
                 // show room by category
                 // if cate == lec, lecRoomList append child <div class="room"> ...
                 // cate == classrom, classRoomList append child <div class="room"> ...
+                var roomID = room.roomID;
+                var roomPic = room.pic;
+                var name = room.name;
+
                 var roomDiv = document.createElement("div");
                 roomDiv.className = "room";
 
                 var roomImg = document.createElement("img");
-                roomImg.src = room.src; // check php/ json
-                roomImg.alt = room.name; // check php/ json
+                roomImg.src = "../php/pics/" +roomPic;
+                roomImg.alt = name; 
                 roomDiv.appendChild(roomImg);
     
                 var roomName = document.createElement("p");
-                roomName.innerHTML = room.name; // check php/ json
+                roomName.innerHTML = roomID; 
                 roomDiv.appendChild(roomName);
     
-                var viewRoom = document.createElement("p");
+                var viewRoom = document.createElement("a");
                 viewRoom.className = "viewRoom";
                 viewRoom.innerHTML = "View Room";
-                viewRoom.onclick = info(room.name); // check php/ json
+                viewRoom.href = "roomInfo.html";
+                viewRoom.onclick = function() {info(roomID)};
                 roomDiv.appendChild(viewRoom);
 
-                if (room.cate == "lecture") {
+                if (room.categoryID == "LT") {
                     lecRoomList.appendChild(roomDiv);
                 } else {
                     classRoomList.appendChild(roomDiv);
@@ -59,6 +61,11 @@ window.addEventListener("DOMContentLoaded", (e) => {
                 event.preventDefault();
     
                 var cate = element.value;
+                if (cate == "lecture") {
+                    cate = "LT";
+                } else {
+                    cate = "CL";
+                }
                 var roomList = document.getElementById('roomList');
                 roomList.innerHTML = "";
 
@@ -86,23 +93,28 @@ window.addEventListener("DOMContentLoaded", (e) => {
     
                         // for each response, if cate match, append
                         response.forEach((room) => {
-                            if (room.cate == cate) { // check php/ json
+                            if (room.catogoryID == cate) {
+                                var roomID = room.roomID;
+                                var roomPic = room.pic;
+                                var name = room.name;
+
                                 var roomDiv = document.createElement("div");
                                 roomDiv.className = "room";
 
                                 var roomImg = document.createElement("img");
-                                roomImg.src = room.src // check php/ json
-                                roomImg.alt = room.name // check php/ json
+                                roomImg.src = "../php/pics/" +roomPic;
+                                roomImg.alt = name;
                                 roomDiv.appendChild(roomImg);
     
                                 var roomName = document.createElement("p");
-                                roomName.innerHTML = room.name // check php/ json
-                                roomDiv.appendChild(roomName)
+                                roomName.innerHTML = roomID;
+                                roomDiv.appendChild(roomName);
     
-                                var viewRoom = document.createElement("p");
+                                var viewRoom = document.createElement("a");
                                 viewRoom.className = "viewRoom";
                                 viewRoom.innerHTML = "View Room";
-                                viewRoom.onclick = info(room.name); // check php/ json
+                                viewRoom.href = "roomInfo.html";
+                                viewRoom.onclick = function() {info(roomID)};
                                 roomDiv.appendChild(viewRoom);
     
                                 cateDiv.appendChild(roomDiv);

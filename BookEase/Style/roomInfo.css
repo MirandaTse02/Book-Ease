@@ -53,6 +53,7 @@ a:hover {
     color: #c7c7c7;
 }
 
-image {
+img {
     padding: 100px;
+    height: 400px;
 }

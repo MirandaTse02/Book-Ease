@@ -19,46 +19,60 @@ function getRoomInfo() {
             // response json
 			var response = JSON.parse(xhr.responseText);
 
+            var name = response.name;
+            var pic = response.pic;
+            var cap = response.capacity;
+            var loc = response.location;
+            var equip = response.equipment;
+
+
             var divInfo = document.getElementById("info");
             var divPhoto = document.getElementById("photo");
             
             // append info
             // room photo
             var roomImg = document.createElement("img");
-            roomImg.src = response.src; // check php/ json
+            roomImg.src = "../php/pics/" + pic; // check php/ json
             roomImg.alt = "room photo";
             roomImg.id = "roomPhoto";
             divPhoto.appendChild(roomImg);
+
+            // Name
+            var roomName = document.createElement("p");
+            roomName.id = "name";
+            roomName.className = "info";
+            roomName.innerHTML = "Name: " + name;
+            divInfo.appendChild(roomName);
 
             // location
             var location = document.createElement("p");
             location.id = "location";
             location.className = "info";
-            location.innerHTML = "Location: " + response.location; // check php/ json
+            location.innerHTML = "Location: " + loc; // check php/ json
             divInfo.appendChild(location);
 
             // capacity
             var capacity = document.createElement("p");
             capacity.id = "capacity";
             capacity.className = "info";
-            capacity.innerHTML = "Capacity: " + response.capacity; // check php/ json
+            capacity.innerHTML = "Capacity: " + cap; // check php/ json
             divInfo.appendChild(capacity);
 
             // Equipment
             var equipText = document.createElement("p");
             equipText.className = "info";
-            equipText.innerHTML = "Equipment:";
+            equipText.innerHTML = "Equipment: " + equip;
             divInfo.appendChild(equipText);
 
-            var equipmentList = document.createElement("ul");
-            equipmentList.id = "equip";
-            equipmentList.className = "info";
-            response.equipment.forEach(function(equip) {
-                var li = document.createElement("li");
-                li.innerHTML = equip.name;
-                equipmentList.appendChild(li);
-            });
-            divInfo.appendChild(equipmentList);
+            // var equipmentList = document.createElement("ul");
+            // equipmentList.id = "equip";
+            // equipmentList.className = "info";
+            // response.equipment.forEach(function(equip) {
+            //     var li = document.createElement("li");
+            //     li.innerHTML = equip.name;
+            //     equipmentList.appendChild(li);
+            // });
+            // divInfo.appendChild(equipmentList);
         }
     }
 
