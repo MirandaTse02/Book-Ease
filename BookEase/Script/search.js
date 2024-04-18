@@ -11,8 +11,8 @@ function fetchRoom() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // response json
             var response = JSON.parse(xhr.responseText);
-            var lecRoomList = document.getElementById('lecture');
-            var classRoomList = document.getElementById('classroom');
+            var lecRoomList = document.getElementById('LT');
+            var classRoomList = document.getElementById('CL');
             
             response.forEach(function(room) {
                 // show room by category
@@ -43,7 +43,9 @@ function fetchRoom() {
 
                 if (room.categoryID == "LT") {
                     lecRoomList.appendChild(roomDiv);
-                } else {
+                }
+                alert(room.categoryID);
+                if (room.categoryID == "CL") {
                     classRoomList.appendChild(roomDiv);
                 }
             });
@@ -61,10 +63,9 @@ window.addEventListener("DOMContentLoaded", (e) => {
                 event.preventDefault();
     
                 var cate = element.value;
-                if (cate == "lecture") {
-                    cate = "LT";
-                } else {
-                    cate = "CL";
+                if (cate == "all") {
+                    fetchRoom();
+                    return null;
                 }
                 var roomList = document.getElementById('roomList');
                 roomList.innerHTML = "";
@@ -76,7 +77,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
                 // append title
                 var title = document.createElement("h2");
-                if (cate == "lecture") {
+                if (cate == "LT") {
                     title.innerHTML = "Lecture Theatres";
                 } else {
                     title.innerHTML = "Classroom";
@@ -93,7 +94,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
     
                         // for each response, if cate match, append
                         response.forEach((room) => {
-                            if (room.catogoryID == cate) {
+                            if (room.categoryID == cate) {
                                 var roomID = room.roomID;
                                 var roomPic = room.pic;
                                 var name = room.name;
