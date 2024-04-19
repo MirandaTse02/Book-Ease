@@ -24,7 +24,6 @@ function getRecord() {
              var record = document.getElementById("record");
              record.innerHTML ="<tr><th>Room</th><th>Date</th><th>Time</th><th>QR Code</th></tr>";
              var count = Object.keys(response).length;
-             alert(count);
              if (count == 7) {
                 var row = "<tr>" +
                      "<td>" + response.roomID + "</td>" +
