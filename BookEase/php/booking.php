@@ -46,13 +46,17 @@
 
     function addNewBooking() {
         global $conn, $selectDate;
-        $userID = $_POST['userID'];
-        $roomID = $_POST['room'];
-        $time = $_POST['timeSlot'];
-        generateQRcode($userID, $roomID, $selectDate, $time);
-        $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?)'); // add into items table
-        $stmt->execute([$roomID, $selectDate, $time, $userID, $totalRecord+1]);
-        http_response_code(200);
+        try {
+            $userID = $_POST['userID'];
+            $roomID = $_POST['room'];
+            $time = $_POST['timeSlot'];
+            generateQRcode($userID, $roomID, $selectDate, $time);
+            $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?)'); // add into items table
+            $stmt->execute([$roomID, $selectDate, $time, $userID, $totalRecord+1]);
+            http_response_code(200);
+        } catch {
+            echo "fail isert new record";
+        }
     }
 
     function generateQRcode($userID, $roomID, $date, $time) {
