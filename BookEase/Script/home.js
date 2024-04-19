@@ -28,7 +28,7 @@ function getCookieUserName(name) {
 window.onload = function() {
     var userid = getCookieUserName("userID");
     var xhr = new XMLHttpRequest();
-    alert(userid);
+    // alert(userid);
     xhr.open('GET', '../php/home.php?id='+userid);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
