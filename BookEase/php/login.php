@@ -5,11 +5,11 @@
     // Database configuration
     $host = 'localhost';
     $dbName = 'room_booking_app';
-    $username = 'root';
+    $DBusername = 'root';
     $DBpassword = '';
 
     try {
-        $conn = new mysqli($host, $username, $DBpassword, $dbName);
+        $conn = new mysqli($host, $DBusername, $DBpassword, $dbName);
         if ($conn->connect_errno) {
             throw new Exception("Connection failed: " . $conn->connect_error);
         }
@@ -20,7 +20,7 @@
     $userID = $_GET['id'];
     $loginPass = $_POST['password'];
 
-    $stmt = $conn->prepare('SELECT password FROM User WHERE username = ?');
+    $stmt = $conn->prepare('SELECT password FROM User WHERE userID = ?');
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $result = $stmt->get_result();

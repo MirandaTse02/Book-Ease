@@ -3,9 +3,9 @@ let selectedTimeSlot = null;
 function updateTable(date){
     var userid = getCookie("userID");
     var row="<tr><th>Time slot/ Room</th><th>8:00-10:00</th><th>10:00-12:00</th><th>12:00-14:00</th><th>14:00-16:00</th><th>16:00-18:00</th></tr>";
-    document.getElementById("timetable").innerHTML= row;
+    document.getElementById("timetable").innerHTML = row; //got error maybe, test again
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'getRoomInfo.php?userID='+userid);
+    xhr.open('GET', '../php/booking.php?date='+date);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
