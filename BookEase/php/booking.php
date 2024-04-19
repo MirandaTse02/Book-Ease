@@ -45,14 +45,15 @@
     }
 
     function addNewBooking() {
-        global $conn, $selectDate;
+        global $conn, $selectDate, $totalRecord;
         try {
             $userID = $_POST['userID'];
             $roomID = $_POST['room'];
             $time = $_POST['timeSlot'];
             generateQRcode($userID, $roomID, $selectDate, $time);
-            $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?)'); // add into items table
+            $stmt = $conn->prepare('INSERT INTO booking (roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?, ?, ?, ?, ?)'); // add into items table
             $stmt->execute([$roomID, $selectDate, $time, $userID, $totalRecord+1]);
+
             http_response_code(200);
         } catch (Exception $e) {
             echo 'Message: ' .$e->getMessage() . "Note: fail insert new record";
@@ -60,8 +61,8 @@
     }
 
     function generateQRcode($userID, $roomID, $date, $time) {
-        global $conn;
-        $content = "UserID: " . $userID . "\nRoomID: " . $roomID. "\nDate: " . $data. "\nTime: " . $time;
+        global $conn, $totalRecord;
+        $content = "UserID: " . $userID . "\nRoomID: " . $roomID. "\nDate: " . $date. "\nTime: " . $time;
         $apiUrl = "https://api.qrserver.com/v1/create-qr-code/?data=".$content."&size=200x200";
         $folderPath = '../php/pics/QRcode/';
 
@@ -74,10 +75,13 @@
             // Save the image to the specified folder
             $filePath = $folderPath . $filename;
             $result = file_put_contents($filePath, $imageData);
+            echo $result;
+
             if ($result !== false) {
                 echo "Image saved successfully.";
-                $stmt = $conn->prepare('INSERT INTO QRcode (codeID, bookingID, pic) VALUES (?)'); // add into items table
-                $stmt->execute([$totalRecord+1, $totalRecord+1, $filename]);
+                $stmt = $conn->prepare('INSERT INTO qrcode (bookingID, pic) VALUES (?, ?)'); // add into items table
+                $stmt->execute([$totalRecord+1, $filename]);
+                echo "yes3";
             } else {
                 echo "Failed to save the image.";
             }
