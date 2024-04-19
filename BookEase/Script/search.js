@@ -13,6 +13,11 @@ function fetchRoom() {
             var response = JSON.parse(xhr.responseText);
             var lecRoomList = document.getElementById('LT');
             var classRoomList = document.getElementById('CL');
+
+            lecRoomList.innerHTML = "<h2>Lecture Theatres</h2>";
+            classRoomList.innerHTML = "<h2>Classroom</h2>";
+
+            alert("fetch");
             
             response.forEach(function(room) {
                 // show room by category
@@ -44,7 +49,7 @@ function fetchRoom() {
                 if (room.categoryID == "LT") {
                     lecRoomList.appendChild(roomDiv);
                 }
-                alert(room.categoryID);
+                // alert(room.categoryID);
                 if (room.categoryID == "CL") {
                     classRoomList.appendChild(roomDiv);
                 }
@@ -63,26 +68,25 @@ window.addEventListener("DOMContentLoaded", (e) => {
                 event.preventDefault();
     
                 var cate = element.value;
-                if (cate == "all") {
-                    fetchRoom();
-                    return null;
-                }
-                var roomList = document.getElementById('roomList');
-                roomList.innerHTML = "";
-
-                // append category div
-                var cateDiv = document.createElement("div");
-                cateDiv.id = cate;
-                roomList.appendChild(cateDiv);
+                
+                var lecRoomList = document.getElementById('LT');
+                var classRoomList = document.getElementById('CL');
+    
+                lecRoomList.innerHTML = "<h2>Lecture Theatres</h2>";
+                classRoomList.innerHTML = "<h2>Classroom</h2>";
 
                 // append title
                 var title = document.createElement("h2");
-                if (cate == "LT") {
-                    title.innerHTML = "Lecture Theatres";
+                if (cate == "all") {
+                    lecRoomList.innerHTML = "<h2>Lecture Theatres</h2>";
+                    classRoomList.innerHTML = "<h2>Classroom</h2>";
+                } else if (cate == "LT") {
+                    lecRoomList.innerHTML = "<h2>Lecture Theatres</h2>";
+                    classRoomList.innerHTML = "";
                 } else {
-                    title.innerHTML = "Classroom";
+                    lecRoomList.innerHTML = "<h2>Lecture Theatres</h2>";
+                    classRoomList.innerHTML = "";
                 }
-                cateDiv.appendChild(title);
     
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', '../php/searchRoomCate.php?category=' + cate); // php may change
@@ -94,7 +98,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
     
                         // for each response, if cate match, append
                         response.forEach((room) => {
-                            if (room.categoryID == cate) {
                                 var roomID = room.roomID;
                                 var roomPic = room.pic;
                                 var name = room.name;
@@ -117,9 +120,22 @@ window.addEventListener("DOMContentLoaded", (e) => {
                                 viewRoom.href = "roomInfo.html";
                                 viewRoom.onclick = function() {info(roomID)};
                                 roomDiv.appendChild(viewRoom);
-    
-                                cateDiv.appendChild(roomDiv);
-                            }
+
+
+
+                                if (cate == "all") {
+                                    if (room.categoryID == "LT") {
+                                        lecRoomList.appendChild(roomDiv);
+                                    }
+                                    // alert(room.categoryID);
+                                    if (room.categoryID == "CL") {
+                                        classRoomList.appendChild(roomDiv);
+                                    }
+                                } else if (cate == "LT") {
+                                    lecRoomList.appendChild(roomDiv);
+                                } else {
+                                    classRoomList.appendChild(roomDiv);
+                                }
                         });
                     }
                 };

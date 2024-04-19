@@ -7,7 +7,7 @@ function getCookie(name) {
         if (begin != 0) return null;
     }
     
-    return decodeURI(c.substring(begin+prefix.length));
+    return "ok";
 }
 
 function cookieExist() {
