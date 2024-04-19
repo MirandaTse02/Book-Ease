@@ -24,6 +24,7 @@ function getRoomInfo() {
             var cap = response.capacity;
             var loc = response.location;
             var equip = response.equipment;
+            var sw = response.software;
 
 
             var divInfo = document.getElementById("info");
@@ -63,6 +64,12 @@ function getRoomInfo() {
             equipText.className = "info";
             equipText.innerHTML = "Equipment: " + equip;
             divInfo.appendChild(equipText);
+
+            // software
+            var software = document.createElement("p");
+            software.className = "info";
+            software.innerHTML = "Software: " +sw;
+            divInfo.appendChild(software);
 
             // var equipmentList = document.createElement("ul");
             // equipmentList.id = "equip";
