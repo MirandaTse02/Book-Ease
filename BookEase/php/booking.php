@@ -2,14 +2,14 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $searchCate = $_GET['category'];
+    $selectDate = $_GET['date'];
 
     $host = 'localhost';
     $dbName = 'room_booking_app';
-    $username = 'root';
+    $DBusername = 'root';
     $DBpassword = '';
     
-    $conn = new mysqli($host, $username, $DBpassword, $dbName);
+    $conn = new mysqli($host, $DBusername, $DBpassword, $dbName);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -21,13 +21,20 @@
         case 'POST':
             addNewBooking();
             break;
+        default:
+            http_response_code(405);
+            echo json_encode(['error' => 'Method Not Allowed']);
+            break;
     }
 
     function getCalendar() {
-        $stmt = $conn->prepare('SELECT * FROM Booking');
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM Booking where bookDate=?');
+        $stmt->bind_param("s", $selectDate);
         $stmt->execute();
         $result = $stmt->get_result();
-        global $totalRecord = $result->num_rows;
+        global $totalRecord;
+        $totalRecord = $result->num_rows;
         if ($result->num_rows > 1) {
             $rows = $result->fetch_all(MYSQLI_ASSOC);
             echo json_encode($rows);
@@ -38,18 +45,19 @@
     }
 
     function addNewBooking() {
+        global $conn;
         $userID = $_POST['userID'];
         $roomID = $_POST['room'];
-        $date = $_POST['date'];
         $time = $_POST['timeSlot'];
-        generateQRcode();
-        $stmt = $conn->prepare('INSERT INTO Booking (roomID, date, timeslot, userID, QRcodeID) VALUES (?)'); // add into items table
-        $stmt->execute([$roomID, $data, $time, $userID, $totalRecord+1]);
+        generateQRcode($userID, $roomID, $selectDate, $time);
+        $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?)'); // add into items table
+        $stmt->execute([$roomID, $selectData, $time, $userID, $totalRecord+1]);
         http_response_code(200);
     }
 
-    function generateQRcode() {
-        $content = "UserID: " . $userID+"\nRoomID: " . $roomID+"\nDate: " . $data+"\nTime: " . $time;
+    function generateQRcode($userID, $roomID, $date, $time) {
+        global $conn;
+        $content = "UserID: " . $userID . "\nRoomID: " . $roomID. "\nDate: " . $data. "\nTime: " . $time;
         $apiUrl = "https://api.qrserver.com/v1/create-qr-code/?data=".$content."&size=200x200";
         $folderPath = '../php/pics/QRcode/';
 

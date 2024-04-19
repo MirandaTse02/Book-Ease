@@ -6,9 +6,9 @@
 
     $host = 'localhost';
     $dbName = 'room_booking_app';
-    $username = 'root';
+    $DBusername = 'root';
     $DBpassword = '';
-    $conn = new mysqli($host, $username, $DBpassword, $dbName);
+    $conn = new mysqli($host, $DBusername, $DBpassword, $dbName);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
