@@ -111,7 +111,7 @@ INSERT INTO `Room` (`roomID`, `name`, `pic`, `categoryID`, `location`, `capacity
 ('N101', 'N101', 'N101_pic.jpeg', 'CL', '1/F, Block N (pass Chan Sui Kau and Chan Lam Moon Chun Square 陳瑞球林滿珍伉儷廣場 / MN Square)', 48, 'Teaching PC, Touch Screen Monitor, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Handheld Microphones, Flexiable Monitor / Webcam Arm, 6 Wall mounted LCD displays', 'Zoom, MS Teams'),
 ('TU103', "Wong\'s International Lecture Theatre 王氏國際演講廳", 'TU103_pic.jpeg', 'LT', '1/F, Wing TU, Yip Kit Chuen Building 葉傑全樓', 131, 'Teaching PC, 2 Projectors, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams'),
 ('TU107', 'Lu Guan Qiu Lecture Theatre 魯冠球演講廳', 'TU107_pic.jpeg', 'LT', '1/F, Wing TU, Yip Kit Chuen Building 葉傑全樓', 168, 'Teaching PC, 3 Projectors, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams'),
-('V311', 'V311', 'V311_pic.jpeg', 'CL', '3/F, Block V, Jockey Club Innovation Tower 賽馬會創新樓', 18, 'Teaching PC, 1 Projector, Touch Screen Monitor, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams');
+('V304', 'V304', 'V304_pic.jpeg', 'CL', '3/F, Block V, Jockey Club Innovation Tower 賽馬會創新樓', 26, 'Teaching PC, 1 Projector, Touch Screen Monitor, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams');
 
 -- --------------------------------------------------------
 
