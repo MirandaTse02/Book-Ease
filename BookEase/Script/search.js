@@ -17,7 +17,7 @@ function fetchRoom() {
             lecRoomList.innerHTML = "<h2>Lecture Theatres</h2>";
             classRoomList.innerHTML = "<h2>Classroom</h2>";
 
-            alert("fetch");
+            // alert("fetch");
             
             response.forEach(function(room) {
                 // show room by category
