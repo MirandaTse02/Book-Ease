@@ -10,18 +10,12 @@
 <body>
     <div class="header">
     <h1>Calendar</h1>
-    <select>
-        <option>17-3-2024</option>
-        <option>18-3-2024</option>
-        <option>19-3-2024</option>
-        <option>20-3-2024</option>
-        <option>21-3-2024</option>
-        <option>22-3-2024</option>
-        <option>23-3-2024</option>
-
-    </select>
+    <<form > 
+        <label for="bookingDate">Choose a date:</label>
+      <input type="date" id="bookingDate" name="bookingDate">
+       </form>
     </div>
-    <table>
+    <table id="timetable">
         
         <tr>
             <th>Time slot/ Room</th>
@@ -88,6 +82,7 @@
             <td><button onclick="selectTimeSlot('N101', '16:00-18:00')">Available</button></td>
         </tr>
     </table>
+</div>
     <button class="submit" onclick="submitBooking()">Submit</button>
 </body>
 
