@@ -30,7 +30,7 @@ function getRecord() {
                      "<td>" + response.roomID + "</td>" +
                      "<td>" + response.bookDate + "</td>" +
                      "<td>" + response.timeslot + "</td>" +
-                     "<td><a onclick='qr(" + response.roomID + ")' href='qrcode.html'>Show QR Code</a></td>" +
+                     "<td><a onclick='qr(" + response.bookingID + ")' href='qrcode.html'>Show QR Code</a></td>" +
                      "</tr>";
 
                   document.getElementById("record").innerHTML += row;
@@ -40,7 +40,7 @@ function getRecord() {
                      "<td>" + response[i].roomID + "</td>" +
                      "<td>" + response[i].bookDate + "</td>" +
                      "<td>" + response[i].timeslot + "</td>" +
-                     "<td><a onclick='qr(" + response[i].roomID + ")' href='qrcode.html'>Show QR Code</a></td>" +
+                     "<td><a onclick='qr(" + response[i].bookingID + ")' href='qrcode.html'>Show QR Code</a></td>" +
                      "</tr>";
 
                   document.getElementById("record").innerHTML += row;
