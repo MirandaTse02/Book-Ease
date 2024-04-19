@@ -10,69 +10,13 @@
 <body>
     <div class="header">
     <h1>Calendar</h1>
-    <<form > 
+    <form > 
         <label for="bookingDate">Choose a date:</label>
       <input type="date" id="bookingDate" name="bookingDate">
        </form>
     </div>
     <table id="timetable">
-        
-        <tr>
-            <th>Time slot/ Room</th>
-            <th>8:00-10:00</th>
-            <th>10:00-12:00</th>
-            <th>12:00-14:00</th>
-            <th>14:00-16:00</th>
-            <th>16:00-18:00</th>
-        </tr>
-        <tr>
-            <td>FJ301</td>
-            <td><button id="FJ301 8:00-10:00" onclick="selectTimeSlot('FJ301', '8:00-10:00')">X</button></td>
-            <td><button id="FJ301 10:00-12:00" onclick="selectTimeSlot('FJ301', '10:00-12:00')">Available</button></td>
-            <td><button id="FJ301 12:00-14:00" onclick="selectTimeSlot('FJ301', '12:00-14:00')">Available</button></td>
-            <td><button id="FJ301 14:00-16:00" onclick="selectTimeSlot('FJ301', '14:00-16:00')">Available</button></td>
-            <td><button id="FJ301 16:00-18:00" onclick="selectTimeSlot('FJ301', '16:00-18:00')">Available</button></td>
-        </tr>
-        <tr>
-            <td>HJ202</td>
-            <td><button id="HJ202 8:00-10:00" onclick="selectTimeSlot('HJ202', '8:00-10:00')">Available</button></td>
-            <td><button id="HJ202 10:00-12:00" onclick="selectTimeSlot('HJ202', '10:00-12:00')">Available</button></td>
-            <td><button id="HJ202 12:00-14:00" onclick="selectTimeSlot('HJ202', '12:00-14:00')">Available</button></td>
-            <td><button id="HJ202 14:00-16:00" onclick="selectTimeSlot('HJ202', '14:00-16:00')">Available</button></td>
-            <td><button id="HJ202 16:00-18:00" onclick="selectTimeSlot('HJ202', '16:00-18:00')">Available</button></td>
-        </tr>
-        <tr>
-            <td>N101</td>
-            <td><button id="N101 8:00-10:00" onclick="selectTimeSlot('N101', '8:00-10:00')">Available</button></td>
-            <td><button id="N101 10:00-12:00" onclick="selectTimeSlot('N101', '10:00-12:00')">Available</button></td>
-            <td><button id="N101 12:00-14:00" onclick="selectTimeSlot('N101', '12:00-14:00')">Available</button></td>
-            <td><button id="N101 14:00-16:00" onclick="selectTimeSlot('N101', '14:00-16:00')">Available</button></td>
-            <td><button id="N101 16:00-18:00" onclick="selectTimeSlot('N101', '16:00-18:00')">Available</button></td>
-        </tr>
-        <tr>
-            <td>TU103</td>
-            <td><button id="TU103 8:00-10:00" onclick="selectTimeSlot('TU103', '8:00-10:00')">Available</button></td>
-            <td><button id="TU103 10:00-12:00" onclick="selectTimeSlot('TU103', '10:00-12:00')">Available</button></td>
-            <td><button id="TU103 12:00-14:00" onclick="selectTimeSlot('TU103', '12:00-14:00')">Available</button></td>
-            <td><button id="TU103 14:00-16:00" onclick="selectTimeSlot('TU103', '14:00-16:00')">Available</button></td>
-            <td><button id="TU103 16:00-18:00" onclick="selectTimeSlot('TU103', '16:00-18:00')">Available</button></td>
-        </tr>
-        <tr>
-            <td>TU107</td>
-            <td><button id="TU107 8:00-10:00" onclick="selectTimeSlot('TU107', '8:00-10:00')">Available</button></td>
-            <td><button id="TU107 10:00-12:00" onclick="selectTimeSlot('TU107', '10:00-12:00')">Available</button></td>
-            <td><button id="TU107 12:00-14:00" onclick="selectTimeSlot('TU107', '12:00-14:00')">Available</button></td>
-            <td><button id="TU107 14:00-16:00" onclick="selectTimeSlot('TU107', '14:00-16:00')">Available</button></td>
-            <td><button id="TU107 16:00-18:00"onclick="selectTimeSlot('TU107', '16:00-18:00')">Available</button></td>
-        </tr>
-    <tr>
-            <td>V311</td>
-            <td><button id="V311 8:00-10:00" onclick="selectTimeSlot('V311', '8:00-10:00')">Available</button></td>
-            <td><button id="V311 10:00-12:00" onclick="selectTimeSlot('V311', '10:00-12:00')">Available</button></td>
-            <td><button id="V311 12:00-14:00" onclick="selectTimeSlot('V311', '12:00-14:00')">Available</button></td>
-            <td><button id="V311 14:00-16:00" onclick="selectTimeSlot('V311', '14:00-16:00')">Available</button></td>
-            <td><button id="V311 16:00-18:00" onclick="selectTimeSlot('V311', '16:00-18:00')">Available</button></td>
-        </tr>
+
     </table>
 </div>
     <button class="submit" onclick="submitBooking()">Submit</button>
