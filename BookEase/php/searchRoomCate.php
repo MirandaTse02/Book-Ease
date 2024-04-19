@@ -2,7 +2,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $searchCate = $_GET['category'];
+    $cateID = $_GET['category'];
 
     $host = 'localhost';
     $dbName = 'room_booking_app';
@@ -14,10 +14,9 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if ($searchCate==="none")
+    if ($cateID==="all")
         $stmt = $conn->prepare('SELECT * from Room');
     else {
-        $cateID = $searchCate==="classroom"? "CL":"LT";
         $stmt = $conn->prepare('SELECT * from Room where categoryID = ?');
         $stmt->bind_param("s", $cateID);
     }
