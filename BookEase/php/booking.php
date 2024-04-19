@@ -54,8 +54,8 @@
             $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?)'); // add into items table
             $stmt->execute([$roomID, $selectDate, $time, $userID, $totalRecord+1]);
             http_response_code(200);
-        } catch {
-            echo "fail isert new record";
+        } catch (Exception $e) {
+            echo 'Message: ' .$e->getMessage() . "Note: fail insert new record";
         }
     }
 
