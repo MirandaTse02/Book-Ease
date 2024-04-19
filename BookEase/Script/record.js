@@ -7,7 +7,7 @@ function getCookie(name) {
         if (begin != 0) return null;
     }
     
-    return decodeURI(c.substring(begin + prefix.length));;
+    return decodeURI(c.substring(begin + prefix.length));
 }
 
 function getRecord() {
@@ -23,14 +23,13 @@ function getRecord() {
              // Generate table rows
              var record = document.getElementById("record");
              record.innerHTML ="<tr><th>Room</th><th>Date</th><th>Time</th><th>QR Code</th></tr>";
-             alert(response.roomID);
-             var count = Object.keys(response).length
+             var count = Object.keys(response).length;
              if (count/7 == 1) {
                 var row = "<tr>" +
                      "<td>" + response.roomID + "</td>" +
                      "<td>" + response.bookDate + "</td>" +
                      "<td>" + response.timeslot + "</td>" +
-                     "<td><a onclick='qr(" + response.bookingID + ")' href='qrcode.html'>Show QR Code</a></td>" +
+                     "<td><a onclick='qr(" + response.bookingID +")' href='qrcode.html'>Show QR Code</a></td>" +
                      "</tr>";
 
                   document.getElementById("record").innerHTML += row;
@@ -50,6 +49,10 @@ function getRecord() {
         }
     }
     xhr.send();
+}
+
+function qr(bookingID) {
+    localStorage.setItem("BookingID", bookingID);
 }
 
 getRecord();
