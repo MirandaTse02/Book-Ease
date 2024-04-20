@@ -62,12 +62,12 @@ function timetable(date) {
                     for (var i = 0; i < response.length; i++) {
                         room = response[i].roomID;
                         timeslot = response[i].timeslot;
-                        console.log(room, timeslot);
+                        // console.log(room, timeslot);
                         id = room + " " + timeslot;
                         var booked = document.getElementById(id);
                         booked.onclick = function() {selectTimeSlot('', '') ;};
                         booked.innerHTML = "x";
-                        console.log(booked)
+                        // console.log(booked)
                     }
                 }
             }
@@ -77,7 +77,32 @@ function timetable(date) {
 }
 
 function fetchtimetable() {
-    html = "<tr><th>Time slot/ Room</th><th>08:00-10:00</th><th>10:00-12:00</th><th>12:00-14:00</th><th>14:00-16:00</th><th>16:00-18:00</th> </tr><tr><td>FJ301</td><td><button class=\"slot\" id=\"FJ301 08:00-10:00\">Available</button></td><td><button class=\"slot\" id=\"FJ301 10:00-12:00\">Available</button></td><td><button class=\"slot\" id=\"FJ301 12:00-14:00\" >Available</button></td><td><button class=\"slot\" id=\"FJ301 14:00-16:00\" >Available</button></td><td><button class=\"slot\" id=\"FJ301 16:00-18:00\" >Available</button></td></tr><tr><td>HJ202</td><td><button class=\"slot\" id=\"HJ202 08:00-10:00\" >Available</button></td><td><button class=\"slot\" id=\"HJ202 10:00-12:00\" >Available</button></td><td><button class=\"slot\" id=\"HJ202 12:00-14:00\" >Available</button></td><td><button class=\"slot\" id=\"HJ202 14:00-16:00\" >Available</button></td><td><button class=\"slot\" id=\"HJ202 16:00-18:00\" >Available</button></td></tr><tr><td>N101</td><td><button class=\"slot\" id=\"N101 08:00-10:00\" >Available</button></td><td><button class=\"slot\" id=\"N101 10:00-12:00\" >Available</button></td><td><button class=\"slot\" id=\"N101 12:00-14:00\" >Available</button></td><td><button class=\"slot\" id=\"N101 14:00-16:00\" >Available</button></td><td><button class=\"slot\" id=\"N101 16:00-18:00\" >Available</button></td></tr><tr><td>TU103</td><td><button class=\"slot\" id=\"TU103 08:00-10:00\" >Available</button></td><td><button class=\"slot\" id=\"TU103 10:00-12:00\" >Available</button></td><td><button class=\"slot\" id=\"TU103 12:00-14:00\" >Available</button></td><td><button class=\"slot\" id=\"TU103 14:00-16:00\" >Available</button></td><td><button class=\"slot\" id=\"TU103 16:00-18:00\" >Available</button></td></tr><tr><td>TU107</td>";
+    html = "<tr><th>Time slot/ Room</th><th>08:00-10:00</th><th>10:00-12:00</th><th>12:00-14:00</th><th>14:00-16:00</th><th>16:00-18:00</th> \
+    <tr><td>FJ301</td>\
+    <td><button class=\"slot\" id=\"FJ301 08:00-10:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"FJ301 10:00-12:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"FJ301 12:00-14:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"FJ301 14:00-16:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"FJ301 16:00-18:00\">Available</button></td></tr>\
+    <tr><td>HJ202</td>\
+    <td><button class=\"slot\" id=\"HJ202 08:00-10:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"HJ202 10:00-12:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"HJ202 12:00-14:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"HJ202 14:00-16:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"HJ202 16:00-18:00\">Available</button></td></tr>\
+    <tr><td>N101</td>\
+    <td><button class=\"slot\" id=\"N101 08:00-10:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"N101 10:00-12:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"N101 12:00-14:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"N101 14:00-16:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"N101 16:00-18:00\">Available</button></td></tr>\
+    <tr><td>TU103</td>\
+    <td><button class=\"slot\" id=\"TU103 08:00-10:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"TU103 10:00-12:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"TU103 12:00-14:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"TU103 14:00-16:00\">Available</button></td>\
+    <td><button class=\"slot\" id=\"TU103 16:00-18:00\">Available</button></td></tr>\
+    <tr><td>TU107</td>";
     html += "<td><button class=\"slot\" id=\"TU107 08:00-10:00\">Available</button></td>";
     html += "<td><button class=\"slot\" id=\"TU107 10:00-12:00\">Available</button></td>";
     html += "<td><button class=\"slot\" id=\"TU107 12:00-14:00\">Available</button></td>";
