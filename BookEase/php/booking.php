@@ -33,8 +33,6 @@
         $stmt->bind_param("s", $selectDate);
         $stmt->execute();
         $result = $stmt->get_result();
-        global $totalRecord;
-        $totalRecord = $result->num_rows;
         if ($result->num_rows > 1) {
             $rows = $result->fetch_all(MYSQLI_ASSOC);
             echo json_encode($rows);
@@ -45,17 +43,18 @@
     }
 
     function addNewBooking() {
-        global $conn, $selectDate, $totalRecord, $filename;
+        global $conn, $selectDate, $filename;
         try {
             $userID = $_POST['userID'];
             $roomID = $_POST['room'];
             $time = $_POST['timeSlot'];
-            $stmt = $conn->perpare ('SELECT COUNT(bookingID) FROM Booking');
-            $stmt->execute;
-            
+            // $stmt = $conn->perpare ('SELECT COUNT(bookingID) FROM Booking');
+            // $stmt->execute();
+            // $num = $stmt->get_result();
+            // echo $num;
             generateQRcode($userID, $roomID, $selectDate, $time);
-            $stmt = $conn->prepare('INSERT INTO Booking (bookingID, roomID, bookDate, timeslot, userID) VALUES (?, ?, ?, ?, ?)'); // add into items table
-            $stmt->execute([$num, $roomID, $selectDate, $time, $userID]);
+            $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID) VALUES (?, ?, ?, ?)'); // add into items table
+            $stmt->execute([$roomID, $selectDate, $time, $userID]);
             
             http_response_code(200);
         } catch (Exception $e) {
