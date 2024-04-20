@@ -18,7 +18,7 @@ function setImg(pic) {
     var QRcodeImg = document.createElement("img");
     // var room = document.getElementById("roomName");
     // room.innerText = roomName;
-    QRcodeImg.src = '../php/pics/QRcode/'+ pic+'.png'; // check php/ json
+    QRcodeImg.src = '../php/pics/QRcode/'+ pic; // check php/ json
     QRcodeImg.alt = "QRcode failed to load";
     QRcodeImg.id = "QRcode";
     QRCode.appendChild(QRcodeImg);

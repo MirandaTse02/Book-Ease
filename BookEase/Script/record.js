@@ -23,29 +23,30 @@ function getRecord() {
              // Generate table rows
              var record = document.getElementById("record");
              record.innerHTML ="<tr><th>Room</th><th>Date</th><th>Time</th><th>QR Code</th></tr>";
-             var count = Object.keys(response).length;
-             if (count == 7) {
-                var row = "<tr>" +
-                     "<td>" + response.roomID + "</td>" +
-                     "<td>" + response.bookDate + "</td>" +
-                     "<td>" + response.timeslot + "</td>" +
-                     "<td><a onclick='qr(" + response.bookingID +")' href='qrcode.html'>Show QR Code</a></td>" +
-                     "</tr>";
-
-                  document.getElementById("record").innerHTML += row;
-             } else {
-                for (var i = 0; i < count; i++) {
+             if(response!=null){
+                const result = Array.isArray(response);
+                if (!result) {
                     var row = "<tr>" +
-                     "<td>" + response[i].roomID + "</td>" +
-                     "<td>" + response[i].bookDate + "</td>" +
-                     "<td>" + response[i].timeslot + "</td>" +
-                     "<td><a onclick='qr(" + response[i].bookingID + ")' href='qrcode.html'>Show QR Code</a></td>" +
-                     "</tr>";
+                    "<td>" + response.roomID + "</td>" +
+                    "<td>" + response.bookDate + "</td>" +
+                    "<td>" + response.timeslot + "</td>" +
+                    "<td><a onclick='qr(" + response.bookingID +")' href='qrcode.html'>Show QR Code</a></td>" +
+                    "</tr>";
 
-                  document.getElementById("record").innerHTML += row;
+                 document.getElementById("record").innerHTML += row;
+                } else {
+                    for (var i = 0; i < response.length; i++) {
+                        var row = "<tr>" +
+                        "<td>" + response[i].roomID + "</td>" +
+                        "<td>" + response[i].bookDate + "</td>" +
+                        "<td>" + response[i].timeslot + "</td>" +
+                        "<td><a onclick='qr(" + response[i].bookingID + ")' href='qrcode.html'>Show QR Code</a></td>" +
+                        "</tr>";
+   
+                     document.getElementById("record").innerHTML += row;
+                    }
                 }
-             }
-                   
+             }              
         }
     }
     xhr.send();
