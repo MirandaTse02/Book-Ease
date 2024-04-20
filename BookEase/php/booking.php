@@ -2,8 +2,6 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $selectDate = $_GET['date'];
-
     $host = 'localhost';
     $dbName = 'room_booking_app';
     $DBusername = 'root';
@@ -21,6 +19,9 @@
         case 'POST':
             addNewBooking();
             break;
+        case 'DELETE':
+            cancelBooking();
+            break;
         default:
             http_response_code(405);
             echo json_encode(['error' => 'Method Not Allowed']);
@@ -29,6 +30,7 @@
 
     function getCalendar() {
         global $conn, $selectDate;
+        $selectDate = $_GET['date'];
         $stmt = $conn->prepare('SELECT * FROM Booking where bookDate=?');
         $stmt->bind_param("s", $selectDate);
         $stmt->execute();
@@ -44,6 +46,7 @@
 
     function addNewBooking() {
         global $conn, $selectDate;
+        $selectDate = $_GET['date'];
         try {
             $userID = $_POST['userID'];
             $roomID = $_POST['room'];
@@ -63,6 +66,7 @@
             $stmt = $conn->prepare('INSERT INTO booking (bookingID, roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?, ?, ?, ?, ?, ?)'); // add into items table
             $stmt->execute([$bookNum, $roomID, $selectDate, $time, $userID, $codeID]);
             http_response_code(200);
+            echo $bookNum;
         } catch (Exception $e) {
             echo 'Message: ' .$e->getMessage() . " Note: fail insert new record";
         }
@@ -85,7 +89,7 @@
             $filePath = $folderPath . $filename;
             $result = file_put_contents($filePath, $imageData);
             if ($result !== false) {
-                echo "Image saved successfully.";
+                // echo "Image saved successfully.";
 
                 // get the new QRcodeID
                 $stmt = $conn->prepare('SELECT COUNT(codeID) as count FROM QRcode');
@@ -106,6 +110,27 @@
             echo "Failed to retrieve the image data from the API.";
         }
         
+    }
+
+    function cancelBooking() {
+        global $conn;
+        $id = $_GET['bookingID'];
+        if (empty($id)) {
+            http_response_code(400);
+            echo "bad request";
+        }
+        echo $id;
+        $stmt = $conn->prepare('DELETE FROM Booking WHERE bookingID = ?');
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $stmt = $conn->prepare('DELETE FROM QRcode WHERE bookingID = ?');
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+
+        // $stmt->execute([$id]);
+
+        http_response_code(200);
+        echo "Booking cancelled.";
     }
 
 ?>
