@@ -98,10 +98,11 @@ function fetchtimetable() {
 function selectTimeSlot(room, timeSlot) {
     if (timeSlot == '' && room == '') {
         selectedTimeSlot = null;
+        document.getElementById('selected').innerHTML = 'Your Selection <br><br>Time slot not available';
     } else {
         selectedTimeSlot = { room, timeSlot };
+        document.getElementById('selected').innerHTML = 'Your Selection<br><br>Date: '+selectedDate+'<br>Room: '+room+'<br>Time: '+timeSlot;
     }
-    document.getElementById('selected').innerHTML = 'Selected: '+selectedDate+' '+room+' '+timeSlot;
     console.log(selectedTimeSlot);
 }
 
@@ -134,7 +135,7 @@ function submitBooking() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText);
-                alert(`${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully.`);
+                alert(`${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully. \n\nGo to My Record to check for the booking QR code.`);
                 setAllAva();
                 timetable(selectedDate);
             }
