@@ -80,7 +80,7 @@
 
         if ($imageData !== false) {
             // Generate a unique filename for the image
-            $filename = uniqid()."_".$roomID.'_user' .$userID. '.png';
+            $filename = uniqid()."_".$roomID.'_user_' .$userID. '.png';
             // Save the image to the specified folder
             $filePath = $folderPath . $filename;
             $result = file_put_contents($filePath, $imageData);
