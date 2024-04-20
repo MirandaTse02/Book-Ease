@@ -43,27 +43,34 @@
     }
 
     function addNewBooking() {
-        global $conn, $selectDate, $filename;
+        global $conn, $selectDate;
         try {
             $userID = $_POST['userID'];
             $roomID = $_POST['room'];
             $time = $_POST['timeSlot'];
-            // $stmt = $conn->perpare ('SELECT COUNT(bookingID) FROM Booking');
-            // $stmt->execute();
-            // $num = $stmt->get_result();
-            // echo $num;
-            generateQRcode($userID, $roomID, $selectDate, $time);
-            $stmt = $conn->prepare('INSERT INTO Booking (roomID, bookDate, timeslot, userID) VALUES (?, ?, ?, ?)'); // add into items table
-            $stmt->execute([$roomID, $selectDate, $time, $userID]);
-            
+
+            // get the new bookingID and store in $bookNum
+            $stmt = $conn->prepare('SELECT COUNT(bookingID) as count FROM Booking');
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $bookNum = $result->fetch_assoc();
+            $bookNum = $bookNum['count']+1;
+
+            // call API to generate QRcode and return the codeID
+            $codeID = generateQRcode($userID, $roomID, $selectDate, $time, $bookNum);
+
+            // insert new booking record to DB
+            $stmt = $conn->prepare('INSERT INTO booking (bookingID, roomID, bookDate, timeslot, userID, QRcodeID) VALUES (?, ?, ?, ?, ?, ?)'); // add into items table
+            $stmt->execute([$bookNum, $roomID, $selectDate, $time, $userID, $codeID]);
             http_response_code(200);
         } catch (Exception $e) {
-            echo 'Message: ' .$e->getMessage() . "Note: fail insert new record";
+            echo 'Message: ' .$e->getMessage() . " Note: fail insert new record";
         }
     }
 
-    function generateQRcode($userID, $roomID, $date, $time) {
-        global $conn, $filename;
+
+    function generateQRcode($userID, $roomID, $date, $time, $num) {
+        global $conn;
         $content = "UserID: " . $userID . "\nRoomID: " . $roomID. "\nDate: " . $date . "\nTime: " . $time;
         $apiUrl = "https://api.qrserver.com/v1/create-qr-code/?data=".$content."&size=200x200";
         $folderPath = '../php/pics/QRcode/';
@@ -79,17 +86,26 @@
             $result = file_put_contents($filePath, $imageData);
             if ($result !== false) {
                 echo "Image saved successfully.";
-                // $stmt = $conn->prepare('INSERT INTO QRcode (pic) VALUES (?)'); // add into items table
-                // $stmt->execute([$filename]);
-                // echo "yes3";
+
+                // get the new QRcodeID
+                $stmt = $conn->prepare('SELECT COUNT(codeID) as count FROM QRcode');
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $codeNum = $result->fetch_assoc();
+                $codeNum = $codeNum['count']+1;
+
+                // insert QRcode to DB
+                $stmt = $conn->prepare('INSERT INTO QRcode (codeID, bookingID, pic) VALUES (?, ?, ?)'); // add into items table
+                $stmt->execute([$codeNum, $num, $filename]);
+                return $codeNum;
+
             } else {
-                echo "Failed to save the image.";
+                echo "Failed to save the image. please check if ../php/pics/QRcode has full access";
             }
         } else {
             echo "Failed to retrieve the image data from the API.";
         }
-
+        
     }
-
 
 ?>

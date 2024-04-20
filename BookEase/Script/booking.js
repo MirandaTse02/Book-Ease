@@ -134,7 +134,7 @@ function submitBooking() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText);
-                alert(`Date ${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully.`);
+                alert(`${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully.`);
                 setAllAva();
                 timetable(selectedDate);
             }
