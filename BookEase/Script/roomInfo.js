@@ -25,7 +25,7 @@ function getRoomInfo() {
             var loc = response.location;
             var equip = response.equipment;
             var sw = response.software;
-
+            var re = response.remarks;
 
             var divInfo = document.getElementById("info");
             var divPhoto = document.getElementById("photo");
@@ -70,6 +70,13 @@ function getRoomInfo() {
             software.className = "info";
             software.innerHTML = "Software: " +sw;
             divInfo.appendChild(software);
+
+            if (re != null) {
+                var remark = document.createElement("p");
+                remark.className = "info";
+                remark.innerHTML = "Remarks: " +re;
+                divInfo.appendChild(remark);
+            }
 
             // var equipmentList = document.createElement("ul");
             // equipmentList.id = "equip";

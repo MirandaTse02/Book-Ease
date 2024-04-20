@@ -2,10 +2,17 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< Updated upstream
 -- 主機： 127.0.0.1
 -- 產生時間： 2024-04-20 13:06:09
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
+=======
+-- Host: localhost
+-- Generation Time: Apr 20, 2024 at 01:53 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
+>>>>>>> Stashed changes
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,8 +49,16 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`bookingID`, `roomID`, `bookDate`, `timeslot`, `QRcodeID`, `userID`) VALUES
 (1, 'FJ301', '2024-04-09', '12:00-14:00', 1, 't1_alice'),
+<<<<<<< Updated upstream
 (2, 'V311', '2024-03-12', '10:00-12:00', 2, 's1_ben'),
 (3, 'N101', '2024-04-20', '16:00-18:00', 3, 't1_alice');
+=======
+(2, 'V304', '2024-03-12', '10:00-12:00', 2, 's1_ben'),
+(3, 'V304', '2024-04-09', '10:00-12:00', 3, 't1_alice'),
+(4, 'N101', '2024-04-09', '16:00-18:00', 4, 's1_ben'),
+(5, 'FJ301', '2024-04-20', '12:00-14:00', 5, 's1_ben'),
+(6, 'V304', '2024-04-09', '12:00-14:00', 6, 's1_ben');
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -74,7 +89,11 @@ INSERT INTO `category` (`categoryID`, `name`, `access`) VALUES
 CREATE TABLE `qrcode` (
   `codeID` int(11) NOT NULL,
   `bookingID` int(11) DEFAULT NULL,
+<<<<<<< Updated upstream
   `pic` varchar(50) DEFAULT NULL
+=======
+  `pic` varchar(150) DEFAULT NULL
+>>>>>>> Stashed changes
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -83,8 +102,16 @@ CREATE TABLE `qrcode` (
 
 INSERT INTO `qrcode` (`codeID`, `bookingID`, `pic`) VALUES
 (1, 1, '001_FJ301_user1.png'),
+<<<<<<< Updated upstream
 (2, 2, '002_V311_user2.png'),
 (3, 3, '6623a1633a3e9_N101_user_t1_alice.png');
+=======
+(2, 2, '002_V304_user2.png'),
+(3, 3, '003_V304_user_t1_alice.png'),
+(4, 4, '66236f94b2299_N101_users1_ben.png'),
+(5, 5, '66236fdb4a5c7_FJ301_users1_ben.png'),
+(6, 6, '66236e7a1fbc3_V304_users1_ben.png');
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -100,13 +127,15 @@ CREATE TABLE `room` (
   `location` varchar(100) DEFAULT NULL,
   `capacity` int(11) DEFAULT NULL,
   `equipment` varchar(200) DEFAULT NULL,
-  `software` varchar(200) DEFAULT NULL
+  `software` varchar(200) DEFAULT NULL,
+  `remarks` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `room`
 --
 
+<<<<<<< Updated upstream
 INSERT INTO `room` (`roomID`, `name`, `pic`, `categoryID`, `location`, `capacity`, `equipment`, `software`) VALUES
 ('FJ301', 'Winnie Ko Pui Shuen Lecture Theatre 高佩璇演講廳', 'FJ301_pic.jpeg', 'LT', '3/F, Wing FJ, Chan Tai Ho Building 陳大河樓', 139, 'Teaching PC, 1 Projector, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones', 'Zoom, MS Teams'),
 ('HJ202', 'HJ202', 'HJ202_pic.jpeg', 'CL', 'P/F, Wing HJ, Stanley Ho Building 何鴻燊樓', 170, 'Teaching PC, 3 Projectors, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Handheld Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams'),
@@ -114,6 +143,15 @@ INSERT INTO `room` (`roomID`, `name`, `pic`, `categoryID`, `location`, `capacity
 ('TU103', 'Wong\'s International Lecture Theatre 王氏國際演講廳', 'TU103_pic.jpeg', 'LT', '1/F, Wing TU, Yip Kit Chuen Building 葉傑全樓', 131, 'Teaching PC, 2 Projectors, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams'),
 ('TU107', 'Lu Guan Qiu Lecture Theatre 魯冠球演講廳', 'TU107_pic.jpeg', 'LT', '1/F, Wing TU, Yip Kit Chuen Building 葉傑全樓', 168, 'Teaching PC, 3 Projectors, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams'),
 ('V304', 'V304', 'V304_pic.jpeg', 'CL', '3/F, Block V, Jockey Club Innovation Tower 賽馬會創新樓', 26, 'Teaching PC, 1 Projector, Touch Screen Monitor, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams');
+=======
+INSERT INTO `Room` (`roomID`, `name`, `pic`, `categoryID`, `location`, `capacity`, `equipment`, `software`, `remarks`) VALUES
+('FJ301', 'Winnie Ko Pui Shuen Lecture Theatre 高佩璇演講廳', 'FJ301_pic.jpeg', 'LT', '3/F, Wing FJ, Chan Tai Ho Building 陳大河樓', 139, 'Teaching PC, 1 Projector, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones', 'Zoom, MS Teams', 'No ceiling microphone'),
+('HJ202', 'HJ202', 'HJ202_pic.jpeg', 'CL', 'P/F, Wing HJ, Stanley Ho Building 何鴻燊樓', 170, 'Teaching PC, 3 Projectors, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Handheld Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams', ''),
+('N101', 'N101', 'N101_pic.jpeg', 'CL', '1/F, Block N (pass Chan Sui Kau and Chan Lam Moon Chun Square 陳瑞球林滿珍伉儷廣場 / MN Square)', 48, 'Teaching PC, Touch Screen Monitor, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Handheld Microphones, Flexiable Monitor / Webcam Arm, 6 Wall mounted LCD displays', 'Zoom, MS Teams', 'No projector, '),
+('TU103', "Wong\'s International Lecture Theatre 王氏國際演講廳", 'TU103_pic.jpeg', 'LT', '1/F, Wing TU, Yip Kit Chuen Building 葉傑全樓', 131, 'Teaching PC, 2 Projectors, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams', 'No ceiling microphone'),
+('TU107', 'Lu Guan Qiu Lecture Theatre 魯冠球演講廳', 'TU107_pic.jpeg', 'LT', '1/F, Wing TU, Yip Kit Chuen Building 葉傑全樓', 168, 'Teaching PC, 3 Projectors, Touch Screen Monitor, Ceiling Camera, Wired Handheld Microphones, Wireless Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams', 'No ceiling microphone'),
+('V304', 'V304', 'V304_pic.jpeg', 'CL', '3/F, Block V, Jockey Club Innovation Tower 賽馬會創新樓', 26, 'Teaching PC, 1 Projector, Touch Screen Monitor, Ceiling Camera, Ceiling Microphone, Wired Handheld Microphones, Wireless Body Pack Microphones, Flexiable Monitor / Webcam Arm', 'Zoom, MS Teams', '');
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -147,7 +185,12 @@ INSERT INTO `user` (`userID`, `name`, `password`, `role`) VALUES
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`bookingID`),
   ADD KEY `roomID` (`roomID`),
+<<<<<<< Updated upstream
   ADD KEY `userID` (`userID`);
+=======
+  ADD KEY `userID` (`userID`),
+  ADD KEY `QRcodeID` (`QRcodeID`);
+>>>>>>> Stashed changes
 
 --
 -- 資料表索引 `category`
@@ -182,8 +225,36 @@ ALTER TABLE `user`
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `booking`
 --
+<<<<<<< Updated upstream
 ALTER TABLE `booking`
   MODIFY `bookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+ALTER TABLE `Booking`
+  MODIFY `bookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18178;
+
+--
+-- AUTO_INCREMENT for table `QRcode`
+--
+ALTER TABLE `QRcode`
+  MODIFY `codeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Booking`
+--
+ALTER TABLE `Booking`
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`roomID`) REFERENCES `Room` (`roomID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`userID`) REFERENCES `User` (`userID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Room`
+--
+ALTER TABLE `Room`
+  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `Category` (`categoryID`) ON DELETE SET NULL ON UPDATE CASCADE;
+>>>>>>> Stashed changes
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
