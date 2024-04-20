@@ -1,4 +1,5 @@
 var selectedTimeSlot = null;
+var selectedDate;
 
 window.addEventListener("DOMContentLoaded", (e) => {
     var date = new Date();
@@ -11,6 +12,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
     fetchtimetable();
     setAllAva();
     timetable(bookingDate);
+    selectedDate = bookingDate;
     const el = document.getElementsByTagName("input");
     if (el) {
         for (const element of Array.from(el)) {
@@ -20,6 +22,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
                 console.log(date);
                 setAllAva();
                 timetable(date);
+                selectedDate = date;
             })
         }
     }
@@ -80,12 +83,12 @@ function fetchtimetable() {
     html += "<td><button class=\"slot\" id=\"TU107 16:00-18:00\">Available</button></td>";
     html += "</tr>";
     html += "<tr>";
-    html += " <td>V311</td>";
-    html += "<td><button class=\"slot\" id=\"V311 08:00-10:00\">Available</button></td>";
-    html += "<td><button class=\"slot\" id=\"V311 10:00-12:00\">Available</button></td>";
-    html += "<td><button class=\"slot\" id=\"V311 12:00-14:00\">Available</button></td>";
-    html += "<td><button class=\"slot\" id=\"V311 14:00-16:00\">Available</button></td>";
-    html += "<td><button class=\"slot\" id=\"V311 16:00-18:00\">Available</button></td>";
+    html += " <td>V304</td>";
+    html += "<td><button class=\"slot\" id=\"V304 08:00-10:00\">Available</button></td>";
+    html += "<td><button class=\"slot\" id=\"V304 10:00-12:00\">Available</button></td>";
+    html += "<td><button class=\"slot\" id=\"V304 12:00-14:00\">Available</button></td>";
+    html += "<td><button class=\"slot\" id=\"V304 14:00-16:00\">Available</button></td>";
+    html += "<td><button class=\"slot\" id=\"V304 16:00-18:00\">Available</button></td>";
     html += "</tr>";
     var table = document.getElementById("timetable");
     table.innerHTML = html;
@@ -98,8 +101,10 @@ function selectTimeSlot(room, timeSlot) {
     } else {
         selectedTimeSlot = { room, timeSlot };
     }
+    document.getElementById('selected').innerHTML = 'Selected: '+selectedDate+' '+room+' '+timeSlot;
     console.log(selectedTimeSlot);
 }
+
 function getCookie(name) {
     var c = document.cookie;
     var prefix = name + "=";
@@ -118,33 +123,29 @@ function submitBooking() {
         alert('Please select an available time slot.');
     } else{
         var userID = getCookie("userID");
-        // Create a new XMLHttpRequest object
         const xhr = new XMLHttpRequest();
         // Configure the request
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = ("0" + (date.getMonth() + 1)).slice(-2);
-        var day = ("0" + date.getDate()).slice(-2);
-        var bookingDate = year + "-" + month + "-" + day;
-        document.getElementById("bookingDate").value = bookingDate;
-        xhr.open('POST', '../php/booking.php?date='+bookingDate);
+        xhr.open('POST', '../php/booking.php?date='+selectedDate);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
+        
         const { room, timeSlot } = selectedTimeSlot;
-
+        
         // Set up a callback function to handle the response
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText);
-                alert(`Time slot ${timeSlot} for room ${room} booked successfully.`);
+                alert(`Date ${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully.`);
                 setAllAva();
-                timetable(bookingDate);
+                timetable(selectedDate);
             }
         };
         
         // Send the request with some data
         const data = 'userID=' + userID + '&room=' + room + '&timeSlot=' + timeSlot;
         console.log(data);
+        // change date to call update table
+        document.getElementById("bookingDate").value = selectedDate;
         xhr.send(data);
     }
+    
 }

@@ -13,7 +13,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare('SELECT Booking.*, QRcode.pic FROM Booking JOIN QRcode ON QRcode.codeID = Booking.QRcodeID WHERE Booking.userID = ?');
+    $stmt = $conn->prepare('SELECT * FROM Booking WHERE userID = ?');
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $result = $stmt->get_result();
