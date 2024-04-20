@@ -75,8 +75,9 @@
 
     function generateQRcode($userID, $roomID, $date, $time, $num) {
         global $conn;
-        $content = "UserID: " . $userID . "\nRoomID: " . $roomID. "\nDate: " . $date . "\nTime: " . $time;
+        $content = "UserID:".$userID."RoomID:".$roomID."Date:".$date."Time:".$time;
         $apiUrl = "https://api.qrserver.com/v1/create-qr-code/?data=".$content."&size=200x200";
+        echo $apiUrl."\n";
         $folderPath = '../php/pics/QRcode/';
 
         // Make the API request and retrieve the image data
