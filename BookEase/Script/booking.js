@@ -9,10 +9,11 @@ window.addEventListener("DOMContentLoaded", (e) => {
     var bookingDate = year + "-" + month + "-" + day;
     document.getElementById("bookingDate").value = bookingDate;
     console.log(bookingDate);
+    selectedDate = bookingDate;
     fetchtimetable();
     setAllAva();
     timetable(bookingDate);
-    selectedDate = bookingDate;
+    document.getElementById("dateHeader").innerHTML = selectedDate;
     const el = document.getElementsByTagName("input");
     if (el) {
         for (const element of Array.from(el)) {
@@ -23,6 +24,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
                 setAllAva();
                 timetable(date);
                 selectedDate = date;
+                document.getElementById("dateHeader").innerHTML = selectedDate;
             })
         }
     }
@@ -135,9 +137,15 @@ function submitBooking() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText);
-                alert(`${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully. \n\nGo to My Record to check for the booking QR code.`);
-                setAllAva();
-                timetable(selectedDate);
+                var bookingID = xhr.responseText;
+                var input = confirm(`${selectedDate} Time slot ${timeSlot} for room ${room} booked successfully. \n\nGo to My Record to check for the booking QR code.`);
+                if (input != true) {
+                    cancelBooking(bookingID);
+                }
+                else {
+                    setAllAva();
+                    timetable(selectedDate);
+                }
             }
         };
         
@@ -149,4 +157,17 @@ function submitBooking() {
         xhr.send(data);
     }
     
+}
+
+function cancelBooking(booking) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', '../php/booking.php?bookingID='+booking, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.XMLHttpRequest);
+            console.log("\n delete: "+xhr.responseText);
+        }
+    }
+    xhr.send();
 }
